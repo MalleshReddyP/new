@@ -1,0 +1,17 @@
+pipeline{
+    
+  agent any
+    stages('clone from central repo'){
+        echo "Downloading the code from github"
+        git credentialsId: 'Mallesh', url: 'https://github.com/MalleshReddyP/new.git'
+    }
+    stage ('package'){
+        echo "packaging the code"
+        sh 'mvn package'
+    }
+    stage ('install'){
+        echo "installing"
+        sh 'mvn install'
+    }
+}
+    
